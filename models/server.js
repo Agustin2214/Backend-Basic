@@ -1,6 +1,7 @@
 const express = require("express")
-var cors = require('cors')
-
+const cors = require('cors')
+const db = require("../db/connection");
+const User = require("../models/user")
 
 class Server{
     constructor(){
@@ -8,13 +9,12 @@ class Server{
         this.port = process.env.PORT
 
 //Rutas
-        this.userPath ='/users'
-        this.authPath ='/auth'
-        this.atmPath  ='/atm'
 
+//Data Base connection
+        this.dbConnection()
 
 //Lectura y parseo a JSON
-this.app.use(express.json())
+        this.app.use(express.json())
 
 //Middlewates
         this.middlewares()
